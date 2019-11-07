@@ -65,13 +65,6 @@ verifySupported() {
 
 # getDownloadURL checks the latest available version.
 getDownloadURL() {
-  # # Use the GitHub API to find the latest version for this project.
-  # local latest_url="https://api.github.com/repos/$PROJECT_GH/releases/latest"
-  # if type "curl" > /dev/null; then
-  #   DOWNLOAD_URL=$(curl -s $latest_url | grep $OS | awk '/\"browser_download_url\":/{gsub( /[,\"]/,"", $2); print $2}')
-  # elif type "wget" > /dev/null; then
-  #   DOWNLOAD_URL=$(wget -q -O - $latest_url | awk '/\"browser_download_url\":/{gsub( /[,\"]/,"", $2); print $2}')
-  # fi
   DOWNLOAD_URL="https://github.com/shihyuho/helm-values/releases/download/1.2.0/helm-values-linux-1.2.0.tgz"
 }
 
@@ -127,10 +120,6 @@ testVersion() {
 #Stop execution on any error
 trap "fail_trap" EXIT
 set -e
-initArch
-initOS
-verifySupported
 getDownloadURL
 downloadFile
 installFile
-testVersion
